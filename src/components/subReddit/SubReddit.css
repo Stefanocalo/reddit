@@ -44,5 +44,6 @@ ul {
 }
 .selectedSubreddit {
     background-color: blueviolet;
+    color: white;
 
 }
