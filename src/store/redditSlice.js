@@ -64,8 +64,8 @@ const redditSlice = createSlice({
             state.posts[action.payload].loadingComments = false;
             state.posts[action.payload].error = true;
         },
-        toggleDarkMode: (state, action) => {
-            state.isLightMode = action.payload;
+        toggleDarkMode: (state) => {
+            state.isLightMode = !state.isLightMode;
             
         }
     }
