@@ -1,11 +1,11 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
 import './App.css';
 //Redix imports
 import { useSelector, useDispatch} from 'react-redux';
 //Components imports
 import { NavBar } from './components/navBar/NavBar';
 import { SubReddit } from './components/subReddit/SubReddit';
-import { useEffect } from 'react';
+import { Feed } from './components/Feed/Feed';
 
 function App() {
 
@@ -22,6 +22,7 @@ function App() {
     <div style={{backgroundColor: lightTheme ? 'white' : 'black'}} className='App'>
       <NavBar/>
       <SubReddit/>
+      <Feed/>
     </div>
   );
 }

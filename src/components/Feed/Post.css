@@ -1,0 +1,10 @@
+.postWrapper {
+    width: 96%;
+    height: 16rem;
+    background-color: blue;
+    margin: 2%
+}
+.infoSection {
+    height: 15%;
+    background-color: red;
+}

@@ -1,0 +1,10 @@
+.feedContainer {
+    width: 98vw;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.feedWrapper {
+    width: 68vw;
+    margin-top: 4rem;
+}

@@ -16,6 +16,13 @@
     border-style: solid;
     overflow-y: scroll;
 }
+.subRedditWrapper::-webkit-scrollbar {
+    display: none;
+  }
+  .subRedditWrapper {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
 ul {
     padding: 0;
     display: flex;
