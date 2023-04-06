@@ -25,9 +25,10 @@ export function Image({post}) {
             <AnimatePresence>
                 <AnimatePresence>
                     <motion.div
-                    className="expandedContainer"
-                    onClick={() =>setSelectedId(null)}>
-                        <motion.div className="close">
+                    className="expandedContainer">
+                        <motion.div
+                        onClick={() =>setSelectedId(null)}
+                        className="close">
                             <AiOutlineCloseCircle style={{fontSize: '2rem'}}/>
                         </motion.div>
                         <motion.img 

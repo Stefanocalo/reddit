@@ -1,5 +1,6 @@
 .feedContainer {
     width: 68vw;
+    margin: 1vw;
     display: flex;
     justify-content: center;
     align-items: center;
