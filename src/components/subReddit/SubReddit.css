@@ -6,7 +6,7 @@
     justify-content: center;
     position: fixed;
     top: 4rem;
-    left: 0;
+    right: 0;
 }
 .subRedditWrapper {
     height: 95%;
