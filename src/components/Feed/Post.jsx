@@ -11,14 +11,25 @@ import { fetchAuthor } from "../../store/redditSlice";
 //Components imports
 import { Image } from "./Image";
 import { Gallery } from "./Gallery";
+//React-icons imports
+import {BiCommentDetail} from 'react-icons/bi';
+import {TbArrowBigUp, TbArrowBigDown} from 'react-icons/tb';
 
 export function Post({post, index}) {
 
     const [selectedId, setSelectedId] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [expanded, setExpanded] = useState(false);
+    const [voted, setVoted] = useState(null);
     
     const isLightMode = useSelector(state => state.reddit.isLightMode);
+
+    function handleUpVote() {
+        voted === 1 ? setVoted(null) : setVoted(1);
+    }
+    function handleDownVote() {
+        voted === -1 ? setVoted(null) : setVoted(-1);
+    }
     
 
     (post.media_metadata && post.gallery_data) &&console.log(replaceString(post.media_metadata.voua9qs387sa1?.p[2].u));
@@ -72,6 +83,27 @@ export function Post({post, index}) {
                     }
                 </div>
             }
+            <div className="actionSectionContainer">
+                <div className="upsSection">
+                    <div 
+                    onClick={() => handleUpVote()}
+                    className={voted === 1 ? 'upActive' : 'up'}>
+                        <TbArrowBigUp style={{fontSize: '1.6rem', color: isLightMode ? 'black' : 'white'}}/>
+                    </div>
+                    <span style={{color: isLightMode ? 'black' : 'white', padding: '0 0.3rem'}}
+                    >{voted ? post.ups + voted : post.ups}</span>
+                    <div 
+                    onClick={() => handleDownVote()}
+                    className={voted === -1 ? 'downActive' : 'down'}>
+                        <TbArrowBigDown style={{fontSize: '1.6rem', color: isLightMode ? 'black' : 'white'}} />
+                    </div>
+                   
+                </div>
+                <div className="commentSection">
+                    <BiCommentDetail  style={{fontSize: '1.2rem', color: isLightMode ? 'black' : 'white'}}/>
+                    <span style={{color: isLightMode ? 'black' : 'white', padding: '0 0.3rem'}}>{post.num_comments}</span>
+                </div>
+            </div>
 
         </motion.div>
     )
