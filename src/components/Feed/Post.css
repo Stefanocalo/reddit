@@ -172,3 +172,6 @@
     border-radius: 10px;
     cursor: pointer;
 }
+.commentSection:hover {
+    background-color: rgba(240, 240, 240, 0.5);
+}
