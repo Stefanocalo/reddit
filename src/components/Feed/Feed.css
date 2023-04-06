@@ -1,0 +1,16 @@
+.feedContainer {
+    width: 68vw;
+    margin: 1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 1rem;
+}
+.feedWrapper {
+    width: 100%;
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

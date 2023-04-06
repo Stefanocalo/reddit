@@ -6,7 +6,7 @@
     justify-content: center;
     position: fixed;
     top: 4rem;
-    left: 0;
+    right: 0;
 }
 .subRedditWrapper {
     height: 95%;
@@ -16,6 +16,13 @@
     border-style: solid;
     overflow-y: scroll;
 }
+.subRedditWrapper::-webkit-scrollbar {
+    display: none;
+  }
+  .subRedditWrapper {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
 ul {
     padding: 0;
     display: flex;
@@ -23,11 +30,15 @@ ul {
 }
 .subList {
     list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .subredditIcon {
     height: 3rem;
     width: 3rem;
     border-radius: 50%;
+    background-color: white;
 }
 .selectedSubreddit,
 .notSelectedSubreddut {
@@ -36,14 +47,14 @@ ul {
     padding: 0.5rem;
     border-radius: 10px;
     margin: 0.5rem;
-    background-color: none;
     display: flex;
     align-items: center;
     cursor: pointer;
     border-style: none;
+    background-color: rgba(0,0,0,0.1);
 }
 .selectedSubreddit {
-    background-color: blueviolet;
+    background-color: rgb(61, 113, 245);
     color: white;
 
 }
