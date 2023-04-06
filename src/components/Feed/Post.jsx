@@ -3,8 +3,9 @@ import './Post.css';
 import { motion, AnimatePresence } from "framer-motion";
 //misc
 import { replaceString } from "../../misc/varie";
+import moment from "moment";
 //Redux imports
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchAuthor } from "../../store/redditSlice";
 //Components imports
 import { Image } from "./Image";
@@ -15,6 +16,8 @@ export function Post({post, index}) {
     const [selectedId, setSelectedId] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(0);
     
+    const isLightMode = useSelector(state => state.reddit.isLightMode);
+    
 
     (post.media_metadata && post.gallery_data) &&console.log(replaceString(post.media_metadata.voua9qs387sa1?.p[2].u));
     return(
@@ -24,11 +27,17 @@ export function Post({post, index}) {
         whileInView={{y: 0}}
         >
             <div className="infoSection">
-               
-                <span className='author'>{post.author}</span>
+                <span
+                style={{color: isLightMode ? 'black' : 'white'}}
+                className="author">{post.subreddit_name_prefixed}</span>
+                <span 
+                style={{color: isLightMode ? 'black' : 'white'}}
+                className='author'>Posted by: {post.author} . {moment.unix(post.created_utc).fromNow()}</span>
             </div>
             <div className="titleContainer">
-                <span className="postTitle">{post.title}</span>
+                <span 
+                style={{color: isLightMode ? 'black' : 'white'}}
+                className="postTitle">{post.title}</span>
             </div>
             {
                 post.post_hint === 'image' && 
