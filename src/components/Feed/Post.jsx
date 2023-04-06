@@ -6,11 +6,14 @@ import { replaceString } from "../../misc/varie";
 //Redux imports
 import { useDispatch } from "react-redux";
 import { fetchAuthor } from "../../store/redditSlice";
+//Components imports
+import { Image } from "./Image";
 
 export function Post({post, index}) {
 
     const [selectedId, setSelectedId] = useState(null);
-    const mediaData = [];
+    const [currentIndex, setCurrentIndex] = useState(0);
+    
 
     (post.media_metadata && post.gallery_data) &&console.log(replaceString(post.media_metadata.voua9qs387sa1?.p[2].u));
     return(
@@ -28,16 +31,7 @@ export function Post({post, index}) {
             </div>
             {
                 post.post_hint === 'image' && 
-                <div className="postImgContainer">
-                    <motion.img
-                    layoutId={post.id} 
-                    onClick={() => {
-                        setSelectedId(post.id);
-                        const url = post.preview.images[0].source.url;
-                        mediaData.push(url)
-                    }}
-                    className="postImage" src={replaceString(post.preview.images[0].source.url)}/>
-                </div>
+                <Image post={post}/>
             }
             {
                 (post.gallery_data && post.gallery_data) &&
@@ -45,7 +39,6 @@ export function Post({post, index}) {
                     { post.gallery_data.items.map((element, index) => {
                     const hdlUrl = post.media_metadata[element.media_id].p[5]?.u;
                     const thumbnail = post.media_metadata[element.media_id].p[2]?.u;
-                    mediaData.push(hdlUrl);
                     return(
                         <motion.img
                         layoutId={element.media_id}
@@ -65,13 +58,15 @@ export function Post({post, index}) {
             {selectedId && (
                 <AnimatePresence>
                     <motion.div
-                    onClick={() => setSelectedId(null)}
+                    onClick={() => {
+                        setSelectedId(null)
+                    }}
                     style={{position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', backgroundColor: 'rgba(0,0,0,0.6)'}}>
                         <motion.img 
                         drag={true}
                         layoutId={selectedId}
                         onDragEnd={() => setSelectedId(null)}
-                        src={replaceString(mediaData[1])}/>
+                        src={''}/>
                     </motion.div>
                 </AnimatePresence>
             )}

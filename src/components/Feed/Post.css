@@ -9,10 +9,42 @@
 }
 .postImgContainer {
     width: 100%;
-    max-height: 20rem;
+    max-height: 30rem;
     overflow: hidden;
 }
 .postImage {
     width: 90%;
     height: auto
+}
+.expandedContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(1rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 180
+}
+.expandedImage {
+   height: 80vh
+}
+.close {
+    height: 3rem;
+    width: 3rem;
+    position: fixed;
+    top: 3rem;
+    right: 3rem;
+    border-radius: 50%;
+    background-color: rgba(240, 240, 240, 0.3);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.close:hover {
+    background-color: rgba(255, 255, 255, 0.3);
 }
