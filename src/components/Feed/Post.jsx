@@ -6,7 +6,7 @@ export function Post({post}) {
     return(
         <motion.div
         className="postWrapper"
-        initial={{y: 100}}
+        initial={{y: 80}}
         whileInView={{y: 0}}
         >
             <div className="infoSection">

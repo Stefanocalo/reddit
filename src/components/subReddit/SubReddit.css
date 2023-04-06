@@ -30,11 +30,15 @@ ul {
 }
 .subList {
     list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .subredditIcon {
     height: 3rem;
     width: 3rem;
     border-radius: 50%;
+    background-color: white;
 }
 .selectedSubreddit,
 .notSelectedSubreddut {
@@ -43,14 +47,14 @@ ul {
     padding: 0.5rem;
     border-radius: 10px;
     margin: 0.5rem;
-    background-color: none;
     display: flex;
     align-items: center;
     cursor: pointer;
     border-style: none;
+    background-color: rgba(0,0,0,0.1);
 }
 .selectedSubreddit {
-    background-color: blueviolet;
+    background-color: rgb(61, 113, 245);
     color: white;
 
 }

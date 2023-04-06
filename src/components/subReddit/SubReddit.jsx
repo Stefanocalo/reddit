@@ -43,7 +43,7 @@ export function SubReddit() {
                             className="subredditIcon"
                             style={{ border: `2px solid ${subreddit.primary_color}` }}
                             alt={subreddit.display_name} />
-                            <span style={{marginLeft: '1rem'}}>{subreddit.display_name}</span>
+                            <span style={{marginLeft: '1rem', color: isLightMode ? 'black' : "white"}}>{subreddit.display_name}</span>
                         </button>
                     </motion.li>
                 ))}
