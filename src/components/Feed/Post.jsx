@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import './Post.css';
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 //misc
-import { replaceString } from "../../misc/varie";
 import moment from "moment";
 import { wordShortener } from "../../misc/varie";
 //Redux imports
@@ -39,6 +38,7 @@ export function Post({post, index, selectedId, setSelectedId, setExpandedData}) 
         <motion.div
         layoutId={post.id}
         className="postWrapper"
+        style={{backgroundColor: isLightMode ? 'white' : 'black'}}
         initial={{y: 80}}
         whileInView={{y: 0}}
         >

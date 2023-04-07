@@ -63,9 +63,10 @@ export function Feed() {
                     <AnimatePresence>
                         <motion.div 
                         layoutId={selectedId}
-                        onClick={() => setSelectedId(null)}
                         className="expandedContainer">
-                          <ExpandedPost/>
+                          <ExpandedPost 
+                          setSelectedId={setSelectedId}
+                          post={expandedData}/>
                         </motion.div>
                     </AnimatePresence>
                 )
