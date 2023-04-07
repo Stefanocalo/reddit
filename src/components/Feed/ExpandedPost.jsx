@@ -18,9 +18,6 @@ export function ExpandedPost({post,selectedId, setSelectedId, expandedIndex}) {
 
     const isLightMode = useSelector(state => state.reddit.isLightMode);
     const [expanded, setExpanded] = useState(false);
-
-    console.log(expandedIndex);
-
     //Blocking feed scroll while a post is expanded
     useEffect(() => {
         if(selectedId) {
@@ -31,33 +28,27 @@ export function ExpandedPost({post,selectedId, setSelectedId, expandedIndex}) {
         }
     },[selectedId]);
 
-    //Toggle comments;
+    const postData = useSelector(state => state.reddit.posts[expandedIndex]);
+    
+    //Fetch comments and toggle visibility on expand 
+    const [comments, setComments] = useState([]);
     const dispatch = useDispatch();
     useEffect(() => {
+        if(postData.comments.length > 0) {
+            setComments(postData.comments);
+            console.log(comments);
+        }
+    },[postData]);
+    useEffect(() => {
         dispatch(fetchComment(expandedIndex, post.permalink))
-    },[expandedIndex])
+    },[expandedIndex]);
 
     function renderComments() {
-        if (post.errorComments) {
-            return (
-              <span>OPS! Something went wrong.</span>
-            );
+        if(postData.loadingComments) {
+            return(<span>Loading...</span>)
         }
-        if (post.loadingComments) {
-            return( <span>Loading comments...</span>)
-        }
-      
-        if (post.showingComments) {
-            return(
-                <div>
-                    {post.comments.map((comment, index) => (
-                        <Comments comment={comment} key={comment.id} />
-                    ))}
-                </div>
-            )
-        }
-  
     }
+
 
     return(
         <div className="expandedWrapper">
@@ -127,9 +118,11 @@ export function ExpandedPost({post,selectedId, setSelectedId, expandedIndex}) {
                             </div> 
                         </div>
                         <div className="commentsContainer">
-                            {post.showingComments && <>
-                                {renderComments()}
-                            </>}
+                            {
+                                comments && comments.map(comment => (
+                                    <Comments comment={comment} key={comment.id}/>
+                                ))
+                            }
                         </div>
                     </div>
                 </div>

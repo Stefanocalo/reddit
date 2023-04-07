@@ -62,5 +62,8 @@
     .expandedPostWrapper {
         width: 95%;
     }
+    .expandedMainContent {
+        max-height: 30rem;
+    }
    
 }

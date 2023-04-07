@@ -8,22 +8,36 @@ export const Comments = ({comment, id}) => {
 
     return(
         <div key={id}>
-            <div className={isLightMode ? "commentWrapper" : "commentWrapperDark"}>
-                <div className="authorContainer">
-                    <span className="commentAuthor"> {comment.author} </span>
-                    <span className="time"> . {moment.unix(comment.created).fromNow()}</span>
+            <div className="commentWrapper">
+                <div className="bubble">
+                    <div className="authorContainer">
+                        <span 
+                        style={{color: isLightMode ? 'black' : 'white'}}
+                        className="commentAuthor"> {comment.author} </span>
+                        <span 
+                        style={{color: isLightMode ? 'black' : 'white'}}
+                        className="time"> . {moment.unix(comment.created).fromNow()}</span>
+                    </div>
+                    <p 
+                    style={{color: isLightMode ? 'black' : 'white'}}
+                    className="commentBody">{comment.body}</p>
                 </div>
-                <p className="commentBody">{comment.body}</p>
             </div>
             {comment.replies && comment.replies.data.children.map((reply) => {
                 if(reply.data.body) {
                     return  <div className="replyContainer" key={reply.data.id}>
-                    <div className={isLightMode ? "replyWrapper" : "replyWrapperDark"}>
+                    <div className= "replyWrapper">
                         <div className="authorContainer">
-                            <span className="commentAuthor"> {reply.data.author} </span>
-                            <span className="time"> . {moment.unix(reply.data.created).fromNow()}</span>
+                            <span 
+                            style={{color: isLightMode ? 'black' : 'white'}}
+                            className="commentAuthor"> {reply.data.author} </span>
+                            <span 
+                            style={{color: isLightMode ? 'black' : 'white'}}
+                            className="time"> . {moment.unix(reply.data.created).fromNow()}</span>
                         </div>
-                        <p className="commentBody">{reply.data.body}</p>
+                        <p 
+                        style={{color: isLightMode ? 'black' : 'white'}}
+                        className="commentBody">{reply.data.body}</p>
                     </div>
                 </div>
                 }

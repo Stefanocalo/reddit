@@ -5,8 +5,7 @@ import { motion } from "framer-motion";
 import moment from "moment";
 import { wordShortener } from "../../misc/varie";
 //Redux imports
-import { useDispatch, useSelector } from "react-redux";
-import { fetchAuthor } from "../../store/redditSlice";
+import { useSelector } from "react-redux";
 //Components imports
 import { Image } from "./Image";
 import { Gallery } from "./Gallery";
