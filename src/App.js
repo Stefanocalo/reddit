@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 //Redix imports
 import { useSelector, useDispatch} from 'react-redux';
@@ -15,13 +15,19 @@ function App() {
   //Fetching sunReddits
   const dispatch = useDispatch();
   useEffect(() => {
-    
   },[])
+
+  //Hamburger menu state
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <div style={{backgroundColor: lightTheme ? 'white' : 'black'}} className='App'>
-      <NavBar/>
-      <SubReddit/>
+      <NavBar 
+      setIsMenuOpen={setIsMenuOpen}
+      isMenuOpen={isMenuOpen}/>
+      <SubReddit 
+      setIsMenuOpen={setIsMenuOpen}
+      isMenuOpen={isMenuOpen}/>
       <Feed/>
     </div>
   );
