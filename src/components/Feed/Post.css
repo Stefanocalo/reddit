@@ -34,6 +34,7 @@
 }
 .postImgContainer {
     width: 90%;
+    min-height: 20rem;
     max-height: 40rem;
     overflow: hidden;
     display: flex;
