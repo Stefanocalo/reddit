@@ -188,4 +188,7 @@
     #right {
         right: 0.2rem
     }
+    .actionSectionContainer {
+        justify-content: space-between;
+    }
 }

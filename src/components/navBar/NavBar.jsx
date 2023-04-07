@@ -42,8 +42,6 @@ export function NavBar({isMenuOpen, setIsMenuOpen}) {
         right: isMenuOpen ? '0%' : !isMenuOpen && window.innerWidth < 600 ? '-100%' : '0%'
     })
 
-
-
     return(
         <div className='navBarContainer'>
             <div className="section">
@@ -85,11 +83,10 @@ export function NavBar({isMenuOpen, setIsMenuOpen}) {
             </animated.div>
             <motion.div 
             onClick={() => handleClick()}
-            initial={active}
-            animate={{x: 50}}
+           
             id="theme"
             className="themeSection">
-                <CgDarkMode style={{color: theme ? 'black' : 'white' ,fontSize:'1.6rem'}}/>
+                <CgDarkMode style={{color: theme ? 'black' : 'white' ,fontSize:'1.6rem', opacity: isMenuOpen ? 1 : 0}}/>
             </motion.div>
         </div>
     )
