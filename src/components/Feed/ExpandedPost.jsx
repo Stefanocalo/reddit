@@ -6,17 +6,20 @@ import {AiOutlineCloseCircle} from 'react-icons/ai';
 //misc
 import moment from "moment";
 //Redux imports
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchComment, toggleShowingComments } from "../../store/redditSlice";
 //Components imports
 import { Gallery } from "./Gallery";
 import { Image } from "./Image";
+import { Comments } from "./Comment";
 //Miscs imports 
 import { wordShortener } from "../../misc/varie";
-
-export function ExpandedPost({post,selectedId, setSelectedId}) {
+export function ExpandedPost({post,selectedId, setSelectedId, expandedIndex}) {
 
     const isLightMode = useSelector(state => state.reddit.isLightMode);
     const [expanded, setExpanded] = useState(false);
+
+    console.log(expandedIndex);
 
     //Blocking feed scroll while a post is expanded
     useEffect(() => {
@@ -26,7 +29,35 @@ export function ExpandedPost({post,selectedId, setSelectedId}) {
         if(selectedId === null) {
             document.body.style.overflow = 'auto';
         }
-    },[selectedId])
+    },[selectedId]);
+
+    //Toggle comments;
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(fetchComment(expandedIndex, post.permalink))
+    },[expandedIndex])
+
+    function renderComments() {
+        if (post.errorComments) {
+            return (
+              <span>OPS! Something went wrong.</span>
+            );
+        }
+        if (post.loadingComments) {
+            return( <span>Loading comments...</span>)
+        }
+      
+        if (post.showingComments) {
+            return(
+                <div>
+                    {post.comments.map((comment, index) => (
+                        <Comments comment={comment} key={comment.id} />
+                    ))}
+                </div>
+            )
+        }
+  
+    }
 
     return(
         <div className="expandedWrapper">
@@ -93,7 +124,12 @@ export function ExpandedPost({post,selectedId, setSelectedId}) {
                             className="commentSection">
                                 <BiCommentDetail  style={{fontSize: '1.2rem', color: isLightMode ? 'black' : 'white'}}/>
                                 <span style={{color: isLightMode ? 'black' : 'white', padding: '0 0.3rem'}}>{post.num_comments}</span>
-                            </div>
+                            </div> 
+                        </div>
+                        <div className="commentsContainer">
+                            {post.showingComments && <>
+                                {renderComments()}
+                            </>}
                         </div>
                     </div>
                 </div>

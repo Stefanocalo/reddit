@@ -14,7 +14,7 @@ import { Gallery } from "./Gallery";
 import {BiCommentDetail} from 'react-icons/bi';
 import {TbArrowBigUp, TbArrowBigDown} from 'react-icons/tb';
 
-export function Post({post, index, selectedId, setSelectedId, setExpandedData}) {
+export function Post({post, index, setExpandedIndex, setSelectedId, setExpandedData}) {
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [expanded, setExpanded] = useState(false);
@@ -32,6 +32,7 @@ export function Post({post, index, selectedId, setSelectedId, setExpandedData}) 
     function handleExpand() {
         setSelectedId(post.id);
         setExpandedData(post);
+        setExpandedIndex(index);
     }
 
     return(

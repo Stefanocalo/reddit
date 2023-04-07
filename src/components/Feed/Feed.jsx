@@ -24,6 +24,7 @@ export function Feed() {
 
     const [selectedId, setSelectedId] = useState(null);
     const [expandedData, setExpandedData] = useState(null);
+    const [expandedIndex, setExpandedIndex] = useState(null);
 
     //Blocking feed scroll while a post is expanded
     useEffect(() => {
@@ -57,6 +58,7 @@ export function Feed() {
                     setSelectedId={setSelectedId}
                     expandedData={expandedData}
                     setExpandedData={setExpandedData}
+                    setExpandedIndex={setExpandedIndex}
                     />
                  ))
             )
@@ -76,6 +78,7 @@ export function Feed() {
                         className="expandedContainer">
                           <ExpandedPost 
                           setSelectedId={setSelectedId}
+                          expandedIndex={expandedIndex}
                           post={expandedData}/>
                         </motion.div>
                     </AnimatePresence>

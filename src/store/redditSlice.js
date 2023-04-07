@@ -44,7 +44,7 @@ const redditSlice = createSlice({
             state.posts[action.payload].showingComments = !state.posts[action.payload].showingComments;
         },
         startGetComments: (state, action) => {
-            state.posts[action.payload].showingComments = !state.posts[action.payload].showingComments;
+            state.posts[action.payload].showingComments = true;
 
             if(!state.posts[action.payload].showingComments) {
                 return

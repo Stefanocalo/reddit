@@ -44,14 +44,19 @@
     
 }
 .expandedMainContent {
-    padding-top: 5rem;
+    padding-top: 3rem;
     max-height: 25rem;
     width: 100%;
     overflow: scroll;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
+}
+.commentContainer {
+    width: 100%;
+    height: 10rem;
+    background-color: white;
 }
 @media only screen and (max-width: 600px) {
     .expandedPostWrapper {
