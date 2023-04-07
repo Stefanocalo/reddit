@@ -44,6 +44,7 @@ export function Gallery({post}) {
                 const thumbnail = post.media_metadata[element.media_id].p[2]?.u;
                 return(
                     <motion.img
+                    key={element.media_id}
                     className="galleryImage"
                     onClick={() => {
                         setSelectedId(element.media_id);
