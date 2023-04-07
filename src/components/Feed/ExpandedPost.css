@@ -10,7 +10,6 @@
     width: 75%;
     max-height: 90%;
     border-radius: 15px;
-    overflow: scroll;
 }
 .back {
     width: 3rem;
@@ -42,9 +41,21 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    
+}
+.expandedMainContent {
+    padding-top: 5rem;
+    max-height: 25rem;
+    width: 100%;
+    overflow: scroll;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 @media only screen and (max-width: 600px) {
     .expandedPostWrapper {
         width: 95%;
     }
+   
 }

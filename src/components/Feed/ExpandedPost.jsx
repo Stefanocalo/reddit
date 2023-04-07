@@ -10,10 +10,24 @@ import { useSelector } from "react-redux";
 //Components imports
 import { Gallery } from "./Gallery";
 import { Image } from "./Image";
+//Miscs imports 
+import { wordShortener } from "../../misc/varie";
 
-export function ExpandedPost({post, setSelectedId}) {
+export function ExpandedPost({post,selectedId, setSelectedId}) {
 
     const isLightMode = useSelector(state => state.reddit.isLightMode);
+    const [expanded, setExpanded] = useState(false);
+
+    //Blocking feed scroll while a post is expanded
+    useEffect(() => {
+        if(selectedId) {
+            document.body.style.overflow = 'hidden';
+        }
+        if(selectedId === null) {
+            document.body.style.overflow = 'auto';
+        }
+    },[selectedId])
+
     return(
         <div className="expandedWrapper">
             <div 
@@ -38,37 +52,48 @@ export function ExpandedPost({post, setSelectedId}) {
                             <AiOutlineCloseCircle style={{fontSize: '2rem'}}/>
                         </div>
                     </div>
-                    <div className="titleContainer">
-                        <span 
-                        style={{color: isLightMode ? 'black' : 'white'}}
-                        className="postTitle">{post.title}</span>
-                    </div>
-                    {
-                        post.post_hint === 'image' && 
-                        <Image post={post}/>
-                    }
-                    {
-                        (post.gallery_data && post.gallery_data) &&
-                        <Gallery post={post}/>
-                        
-                    }
-                    {
-                        post.selftext &&
-                        <div className="selfTextContainer">
-                            <span
+                    <div className="expandedMainContent">
+                        <div className="titleContainer">
+                            <span 
                             style={{color: isLightMode ? 'black' : 'white'}}
-                            >{post.selftext}</span>
+                            className="postTitle">{post.title}</span>
                         </div>
-                    }
-                    <div className="actionSectionContainer">
-                        <div className="upsSection">  
-                            <span style={{color: isLightMode ? 'black' : 'white', padding: '0 0.3rem'}}
-                            >Ups: {post.ups}</span>   
-                        </div>
-                        <div 
-                        className="commentSection">
-                            <BiCommentDetail  style={{fontSize: '1.2rem', color: isLightMode ? 'black' : 'white'}}/>
-                            <span style={{color: isLightMode ? 'black' : 'white', padding: '0 0.3rem'}}>{post.num_comments}</span>
+                        {
+                            post.post_hint === 'image' && 
+                            <Image post={post}/>
+                        }
+                        {
+                            (post.gallery_data && post.gallery_data) &&
+                            <Gallery post={post}/>
+                            
+                        }
+                        {
+                            post.selftext.length > 300 && (
+                                <>
+                                <p
+                                style={{color: isLightMode ? 'black' : 'white'}}
+                                >{wordShortener(post.selftext, expanded)}</p>
+                                <div className="expand">
+                                    <span
+                                    role='button'
+                                    onClick={() => setExpanded(!expanded)}
+                                    className="show"
+                                    style={{color: isLightMode ? 'black' : 'white'}}
+                                    >{expanded ? 'Show less...' : 'Show more...'}</span>
+                                </div>
+                                </>
+                            )
+                        }
+                        <div className="actionSectionContainer">
+                            <div className="upsSection">  
+                                <span style={{color: isLightMode ? 'black' : 'white', padding: '0 0.3rem'}}
+                                >Ups: {post.ups}</span>   
+                            </div>
+                            <div 
+                            className="commentSection">
+                                <BiCommentDetail  style={{fontSize: '1.2rem', color: isLightMode ? 'black' : 'white'}}/>
+                                <span style={{color: isLightMode ? 'black' : 'white', padding: '0 0.3rem'}}>{post.num_comments}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
