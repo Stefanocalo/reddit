@@ -12,6 +12,17 @@ export function Gallery({post}) {
     const [galleryData, setGalleryData] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    //Blocking feed scroll while a post is expanded
+    useEffect(() => {
+        if(selectedId) {
+            document.body.style.overflow = 'hidden';
+        }
+        if(selectedId === null) {
+            document.body.style.overflow = 'auto';
+        }
+    },[selectedId])
+
+
     useEffect(() => {
         post.gallery_data.items.map((element, index) => {
             galleryData[index] = replaceString(post.media_metadata[element.media_id].p[5]?.u);

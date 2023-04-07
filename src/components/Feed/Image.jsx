@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { replaceString } from "../../misc/varie";
 import './Post.css';
@@ -8,6 +8,17 @@ export function Image({post}) {
 
     const [selectedId, setSelectedId] = useState(null);
     const [url, setUrl] = useState(null);
+
+    //Blocking feed scroll while a post is expanded
+    useEffect(() => {
+        if(selectedId) {
+            document.body.style.overflow = 'hidden';
+        }
+        if(selectedId === null) {
+            document.body.style.overflow = 'auto';
+        }
+    },[selectedId])
+
 
 
     return(

@@ -25,6 +25,16 @@ export function Feed() {
     const [selectedId, setSelectedId] = useState(null);
     const [expandedData, setExpandedData] = useState(null);
 
+    //Blocking feed scroll while a post is expanded
+    useEffect(() => {
+        if(selectedId) {
+            document.body.style.overflow = 'hidden';
+        }
+        if(selectedId === null) {
+            document.body.style.overflow = 'auto';
+        }
+    },[selectedId])
+
     function renderPosts() {
         if(isLoading) {
             return(
