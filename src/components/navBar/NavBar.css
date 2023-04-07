@@ -12,7 +12,8 @@
     left: 0;
     z-index: 99
 }
-.section {
+.section,
+.themeSection {
     height: 100%;
     width: 20%;
     display: flex;
@@ -65,4 +66,34 @@
     border-style: linear;
     border-color: lightgrey;
     border-width: 1px;
+}
+.hamburgerContainer {
+    display: none;
+}
+.bar {
+    width: 1.7rem;
+    height: 0.3rem;
+    margin: 0.3rem 0;
+    border-radius: 10px;
+    background-color: black;
+}
+@media only screen and (max-width: 600px) {
+    .centralSection {
+       position: fixed;
+       top: 4rem;
+       width: 100%;
+       background-color: rgba(240, 240, 240, 0.4);
+    }
+    .themeSection {
+        display: none;
+    }
+    .hamburgerContainer {
+        display: block;
+        position: fixed;
+        left: 1rem;
+    }
+    .navBarContainer {
+        width: 100vw;
+    }
+
 }

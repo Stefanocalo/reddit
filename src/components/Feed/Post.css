@@ -8,7 +8,7 @@
     border: 1px solid lightgrey;
     border-radius: 10px;
     padding-top: 1rem;
-    padding-bottom: 1rem;
+    overflow: hidden;
 }
 .infoSection {
     height: 3rem;
@@ -32,13 +32,14 @@
     font-weight: 600;
 }
 .postImgContainer {
-    width: 75%;
-    max-height: 35rem;
+    width: 90%;
+    max-height: 40rem;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 2rem 0;
+    object-fit: contain;
 }
 .selfTextContainer {
     width: 90%;
@@ -65,7 +66,8 @@
     z-index: 180;
 }
 .expandedImage {
-   height: 80vh
+   height: 100%;
+   object-fit: contain;
 }
 .close {
     height: 3rem;
@@ -174,4 +176,16 @@
 }
 .commentSection:hover {
     background-color: rgba(240, 240, 240, 0.5);
+}
+@media only screen and (max-width: 600px) {
+    .expandedImage {
+        width: 100%;
+        height: auto;
+    }
+    #left {
+        left: 0.2rem
+    }
+    #right {
+        right: 0.2rem
+    }
 }

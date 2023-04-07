@@ -5,8 +5,10 @@ import { fetchSubReddits } from "../../store/subRedditSlice";
 //Framer motion imports
 import { motion, animate, stagger } from "framer-motion";
 import { setSelectedSubreddit } from "../../store/redditSlice";
+//Spring imports
+import { animated, useSpring } from "react-spring"; 
 
-export function SubReddit() {
+export function SubReddit({isMenuOpen, setIsMenuOpen}) {
 
     //Fetch subReddits
     const dispatch = useDispatch();
@@ -22,12 +24,42 @@ export function SubReddit() {
     const selectedSubReddit = useSelector(state => state.reddit.selectedSubReddits);
 
     function clickHandler(url) {
-        dispatch(setSelectedSubreddit(url))
+        dispatch(setSelectedSubreddit(url));
+        setIsMenuOpen(false);
     };
+    
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        if(windowWidth < 600) {
+            setIsMenuOpen(false);
+        } else {
+            setIsMenuOpen(true);
+        }
+    },[windowWidth])
+
+    useEffect(() => {
+        const handleWindowResize = () => {
+        setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleWindowResize);
+
+        return () => {
+        window.removeEventListener('resize', handleWindowResize);
+        };
+    });
+   
+    //Side menu animation
+    const slide = useSpring({
+        right: isMenuOpen ? '0%' : !isMenuOpen && window.innerWidth < 600 ? '-100%' : '0%'
+    })
 
     return(
-        <div className="subRedditContainer">
-            <div style={{borderColor: isLightMode ? 'lightgrey' : 'rgb(180,180,180)'}} className="subRedditWrapper">
+        <animated.div 
+        style={slide}
+        className="subRedditContainer">
+            <div style={{backgroundColor: isLightMode ? 'white' : 'black', borderColor: isLightMode ? 'lightgrey' : 'rgb(180,180,180)'}} className="subRedditWrapper">
                 <ul>
                 {subreddits && subreddits.map((subreddit, index) => (
                     <motion.li
@@ -49,6 +81,6 @@ export function SubReddit() {
                 ))}
                 </ul>
             </div>
-        </div>
+        </animated.div>
     )
 }

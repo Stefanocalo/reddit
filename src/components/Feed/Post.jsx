@@ -32,7 +32,6 @@ export function Post({post, index}) {
     }
     
 
-    (post.media_metadata && post.gallery_data) &&console.log(replaceString(post.media_metadata.voua9qs387sa1?.p[2].u));
     return(
         <motion.div
         className="postWrapper"
