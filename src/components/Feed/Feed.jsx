@@ -1,10 +1,12 @@
-import React, {useEffect}  from "react";
+import React, {useEffect, useState}  from "react";
 import './Feed.css';
 //Redux imports
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "../../store/redditSlice";
 //Component import
 import { Post } from "./Post";
+//Framer motion imports 
+import { motion, AnimatePresence } from "framer-motion";
 
 export function Feed() {
     //Fetch reddits based on selectedSubreddit
@@ -18,6 +20,8 @@ export function Feed() {
     //Access global state values
     const isLoading = useSelector(state => state.reddit.isLoading);
     const isError = useSelector(state => state.reddit.error);
+
+    const [selectedId, setSelectedId] = useState(null);
 
     function renderPosts() {
         if(isLoading) {
@@ -33,7 +37,13 @@ export function Feed() {
         } else {
             return(
                 posts.map((post, index) => (
-                    <Post key={post.id} index={index} post={post}/>
+                    <Post 
+                    key={post.id}
+                    index={index}
+                    post={post}
+                    selectedId={selectedId}
+                    setSelectedId={setSelectedId}
+                    />
                  ))
             )
         }
@@ -44,6 +54,20 @@ export function Feed() {
             <div className="feedWrapper">
                 {renderPosts()}
             </div>
+            {
+                selectedId && (
+                    <AnimatePresence>
+                        <motion.div 
+                        layoutId={selectedId}
+                        onClick={() => setSelectedId(null)}
+                        className="expandedContainer">
+                            <motion.div style={{height: '100%', width: '50%', backgroundColor: 'white'}}>
+
+                            </motion.div>
+                        </motion.div>
+                    </AnimatePresence>
+                )
+            }
         </div>
     )
 }

@@ -15,9 +15,8 @@ import { Gallery } from "./Gallery";
 import {BiCommentDetail} from 'react-icons/bi';
 import {TbArrowBigUp, TbArrowBigDown} from 'react-icons/tb';
 
-export function Post({post, index}) {
+export function Post({post, index, selectedId, setSelectedId}) {
 
-    const [selectedId, setSelectedId] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [expanded, setExpanded] = useState(false);
     const [voted, setVoted] = useState(null);
@@ -29,16 +28,18 @@ export function Post({post, index}) {
     }
     function handleDownVote() {
         voted === -1 ? setVoted(null) : setVoted(-1);
-    }
-    
+    }    
 
     return(
         <motion.div
+        layoutId={post.id}
         className="postWrapper"
         initial={{y: 80}}
         whileInView={{y: 0}}
         >
-            <div className="infoSection">
+            <div 
+            onClick={() => setSelectedId(post.id)}
+            className="infoSection">
                 <span
                 style={{color: isLightMode ? 'black' : 'white'}}
                 className="author">{post.subreddit_name_prefixed}</span>
@@ -103,7 +104,6 @@ export function Post({post, index}) {
                     <span style={{color: isLightMode ? 'black' : 'white', padding: '0 0.3rem'}}>{post.num_comments}</span>
                 </div>
             </div>
-
         </motion.div>
     )
 }
