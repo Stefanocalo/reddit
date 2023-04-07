@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "../../store/redditSlice";
 //Component import
 import { Post } from "./Post";
+import { ExpandedPost } from "./ExpandedPost";
 //Framer motion imports 
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -22,6 +23,7 @@ export function Feed() {
     const isError = useSelector(state => state.reddit.error);
 
     const [selectedId, setSelectedId] = useState(null);
+    const [expandedData, setExpandedData] = useState(null);
 
     function renderPosts() {
         if(isLoading) {
@@ -43,6 +45,8 @@ export function Feed() {
                     post={post}
                     selectedId={selectedId}
                     setSelectedId={setSelectedId}
+                    expandedData={expandedData}
+                    setExpandedData={setExpandedData}
                     />
                  ))
             )
@@ -61,9 +65,7 @@ export function Feed() {
                         layoutId={selectedId}
                         onClick={() => setSelectedId(null)}
                         className="expandedContainer">
-                            <motion.div style={{height: '100%', width: '50%', backgroundColor: 'white'}}>
-
-                            </motion.div>
+                          <ExpandedPost/>
                         </motion.div>
                     </AnimatePresence>
                 )

@@ -15,7 +15,7 @@ import { Gallery } from "./Gallery";
 import {BiCommentDetail} from 'react-icons/bi';
 import {TbArrowBigUp, TbArrowBigDown} from 'react-icons/tb';
 
-export function Post({post, index, selectedId, setSelectedId}) {
+export function Post({post, index, selectedId, setSelectedId, setExpandedData}) {
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [expanded, setExpanded] = useState(false);
@@ -30,6 +30,11 @@ export function Post({post, index, selectedId, setSelectedId}) {
         voted === -1 ? setVoted(null) : setVoted(-1);
     }    
 
+    function handleExpand() {
+        setSelectedId(post.id);
+        setExpandedData(post);
+    }
+
     return(
         <motion.div
         layoutId={post.id}
@@ -38,7 +43,7 @@ export function Post({post, index, selectedId, setSelectedId}) {
         whileInView={{y: 0}}
         >
             <div 
-            onClick={() => setSelectedId(post.id)}
+            onClick={() => handleExpand()}
             className="infoSection">
                 <span
                 style={{color: isLightMode ? 'black' : 'white'}}
@@ -99,7 +104,9 @@ export function Post({post, index, selectedId, setSelectedId}) {
                     </div>
                    
                 </div>
-                <div className="commentSection">
+                <div 
+                onClick={() => handleExpand()}
+                className="commentSection">
                     <BiCommentDetail  style={{fontSize: '1.2rem', color: isLightMode ? 'black' : 'white'}}/>
                     <span style={{color: isLightMode ? 'black' : 'white', padding: '0 0.3rem'}}>{post.num_comments}</span>
                 </div>
