@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { replaceString } from "../../misc/varie";
 import './Post.css';
@@ -9,13 +9,25 @@ export function Image({post}) {
     const [selectedId, setSelectedId] = useState(null);
     const [url, setUrl] = useState(null);
 
+    //Blocking feed scroll while a post is expanded
+    useEffect(() => {
+        if(selectedId) {
+            document.body.style.overflow = 'hidden';
+        }
+        if(selectedId === null) {
+            document.body.style.overflow = 'auto';
+        }
+    },[selectedId])
+
+
+
     return(
         <>
         <div className="postImgContainer">
             <motion.img
-            layoutId={post.id} 
+            layoutId={post.preview.images[0].id} 
             onClick={() => {
-                setSelectedId(post.id);
+                setSelectedId(post.preview.images[0].id);
                 setUrl(replaceString(post.preview.images[0].source.url));
             }}
             className="postImage" src={replaceString(post.preview.images[0].source.url)}/>

@@ -4,6 +4,7 @@ import { replaceString } from "../../misc/varie";
 import './Post.css';
 import {AiOutlineCloseCircle} from 'react-icons/ai';
 import {IoIosArrowForward, IoIosArrowBack} from 'react-icons/io';
+import { useSelector } from "react-redux";
 
 
 export function Gallery({post}) {
@@ -12,9 +13,26 @@ export function Gallery({post}) {
     const [galleryData, setGalleryData] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    const isLightMode = useSelector(state => state.reddit.isLightMode);
+
+    //Blocking feed scroll while a post is expanded
+    useEffect(() => {
+        if(selectedId) {
+            document.body.style.overflow = 'hidden';
+        }
+        if(selectedId === null) {
+            document.body.style.overflow = 'auto';
+        }
+    },[selectedId])
+
+
     useEffect(() => {
         post.gallery_data.items.map((element, index) => {
-            galleryData[index] = replaceString(post.media_metadata[element.media_id].p[5]?.u);
+            galleryData[index] = {
+                hdlUrl: replaceString(post.media_metadata[element.media_id].p[5]?.u),
+                preview: replaceString(post.media_metadata[element.media_id].p[2]?.u),
+                media_id: element.media_id
+            }
         })
     },[post]);
 
@@ -38,21 +56,40 @@ export function Gallery({post}) {
     return(
         <>
         <div className="galleryContainer">
-            { 
-                post.gallery_data.items.map((element, index) => {
-                const hdlUrl = post.media_metadata[element.media_id].p[5]?.u;
-                const thumbnail = post.media_metadata[element.media_id].p[2]?.u;
-                return(
-                    <motion.img
-                    className="galleryImage"
+            <div className="indicatorContainer">
+                <span
+                className="indicator"
+                style={{color: isLightMode ? 'black' : 'white'}}
+                > {currentIndex + 1}/{galleryData.length}</span>
+            </div>
+            <div className="inlineflex">
+                <div 
+                    onClick={() => handleBack()}
+                    className="galleryControls">
+                        <IoIosArrowBack className="icon"/>
+                </div>
+                {
+                    galleryData.length > 0 && <motion.img
+                    className="postImage"
                     onClick={() => {
-                        setSelectedId(element.media_id);
-                        setCurrentIndex(index);
+                        setSelectedId(galleryData[currentIndex].media_id);
                     }}
-                    layoutId={element.media_id}
-                    src={replaceString(thumbnail)}/>
-                )
-            })}
+                    layoutId={galleryData[currentIndex].media_id}
+                    src={galleryData[currentIndex].preview}/>
+                }
+                <div 
+                onClick={() => handleForward()}
+                className="galleryControls">
+                    <IoIosArrowForward className="icon"/>
+                </div>
+            </div>
+            <div className="dotContainer">
+               {galleryData.map((item, index) => (
+                <div 
+                onClick={() => setCurrentIndex(index)}
+                key={index} className={index === currentIndex ? 'activeDot' : 'dot'}></div>
+               ))}
+            </div>
         </div>
         {
             selectedId &&
@@ -81,7 +118,15 @@ export function Gallery({post}) {
                         drag={true}
                         layoutId={selectedId}
                         onDragEnd={() => setSelectedId(null)}
-                        src={galleryData[currentIndex]}/>
+                        src={galleryData[currentIndex].hdlUrl}/>
+                        <div 
+                        className="expandedDotContainer">
+                            {galleryData.map((item, index) => (
+                                <div 
+                                onClick={() => setCurrentIndex(index)}
+                                key={index} className={index === currentIndex ? 'activeDot' : 'dot'}></div>
+                            ))}
+                        </div>
                     </motion.div>
             </AnimatePresence>
         }

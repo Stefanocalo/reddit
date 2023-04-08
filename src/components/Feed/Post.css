@@ -18,6 +18,19 @@
     align-items: flex-start;
     justify-content: center;
     border-bottom: 1px solid rgba(240, 240, 240, 0.5);
+    cursor: pointer
+}
+.indicatorContainer {
+    width: 80%;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.indicator {
+    padding: 0.5rem;
+    border-radius: 10px;
+    background-color:  rgba(240, 240, 240, 0.5);
 }
 .author {
     font-size: 0.8rem;
@@ -27,12 +40,14 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    margin: 2rem 0;
 }
 .postTitle {
     font-weight: 600;
 }
 .postImgContainer {
     width: 90%;
+    min-height: 20rem;
     max-height: 40rem;
     overflow: hidden;
     display: flex;
@@ -49,6 +64,7 @@
 .postImage {
     width: 75%;
     height: auto;
+    max-height: 30rem;
     border-radius: 10px;
     cursor: pointer;
 }
@@ -59,11 +75,17 @@
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(1rem);
+    backdrop-filter: blur(0.2rem);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 180;
+}
+.expandedPostContainer {
+    position: absolute;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
 }
 .expandedImage {
    height: 100%;
@@ -113,6 +135,51 @@
 .imageButton:hover {
     background-color: rgba(255, 255, 255, 0.3);
 }
+.galleryControls {
+    height: 3rem;
+    width: 3rem;
+    top: 50vh;
+    border-radius: 50%;
+    background-color: rgba(240, 240, 240, 0.3);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 1rem;
+}
+.dotContainer {
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.expandedDotContainer {
+    position: fixed;
+    bottom: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(240, 240, 240, 0.3);
+    ;
+}
+.dot,
+.activeDot {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    margin: 00.1rem;
+    border: 1px solid lightgrey;
+    cursor: pointer;
+}
+.dot {
+    background-color: rgba(240, 240, 240, 0.4);
+}
+.activeDot {
+    background-color: rgba(118, 118, 118, 0.5);
+}
 #left {
     left: 3rem
 }
@@ -123,7 +190,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: column;
+}
+.inlineflex {
+    display: flex;
+    align-items: center;
+    justify-content:center;
 }
 .galleryImage {
     height: 15rem;
@@ -177,6 +249,9 @@
 .commentSection:hover {
     background-color: rgba(240, 240, 240, 0.5);
 }
+.commentSection {
+    padding-top: 1rem;
+}
 @media only screen and (max-width: 600px) {
     .expandedImage {
         width: 100%;
@@ -190,5 +265,8 @@
     }
     .actionSectionContainer {
         justify-content: space-between;
+    }
+    .galleryControls {
+        margin: 0;
     }
 }

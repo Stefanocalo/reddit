@@ -10,7 +10,6 @@ import { Feed } from './components/Feed/Feed';
 function App() {
 
   const lightTheme = useSelector(state => state.reddit.isLightMode);
-  console.log(lightTheme)
 
   //Fetching sunReddits
   const dispatch = useDispatch();

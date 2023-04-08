@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import './Post.css';
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 //misc
-import { replaceString } from "../../misc/varie";
 import moment from "moment";
 import { wordShortener } from "../../misc/varie";
+import { upsShortener } from "../../misc/varie";
 //Redux imports
-import { useDispatch, useSelector } from "react-redux";
-import { fetchAuthor } from "../../store/redditSlice";
+import { useSelector } from "react-redux";
 //Components imports
 import { Image } from "./Image";
 import { Gallery } from "./Gallery";
@@ -15,9 +14,8 @@ import { Gallery } from "./Gallery";
 import {BiCommentDetail} from 'react-icons/bi';
 import {TbArrowBigUp, TbArrowBigDown} from 'react-icons/tb';
 
-export function Post({post, index}) {
+export function Post({post, index, setExpandedIndex, setSelectedId, setExpandedData}) {
 
-    const [selectedId, setSelectedId] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [expanded, setExpanded] = useState(false);
     const [voted, setVoted] = useState(null);
@@ -29,16 +27,25 @@ export function Post({post, index}) {
     }
     function handleDownVote() {
         voted === -1 ? setVoted(null) : setVoted(-1);
+    }    
+
+    function handleExpand() {
+        setSelectedId(post.id);
+        setExpandedData(post);
+        setExpandedIndex(index);
     }
-    
 
     return(
         <motion.div
+        layoutId={post.id}
         className="postWrapper"
+        style={{backgroundColor: isLightMode ? 'white' : 'black'}}
         initial={{y: 80}}
         whileInView={{y: 0}}
         >
-            <div className="infoSection">
+            <div 
+            onClick={() => handleExpand()}
+            className="infoSection">
                 <span
                 style={{color: isLightMode ? 'black' : 'white'}}
                 className="author">{post.subreddit_name_prefixed}</span>
@@ -90,7 +97,7 @@ export function Post({post, index}) {
                         <TbArrowBigUp style={{fontSize: '1.6rem', color: isLightMode ? 'black' : 'white'}}/>
                     </div>
                     <span style={{color: isLightMode ? 'black' : 'white', padding: '0 0.3rem'}}
-                    >{voted ? post.ups + voted : post.ups}</span>
+                    >{voted ? upsShortener(post.ups + voted) : upsShortener(post.ups)}</span>
                     <div 
                     onClick={() => handleDownVote()}
                     className={voted === -1 ? 'downActive' : 'down'}>
@@ -98,12 +105,13 @@ export function Post({post, index}) {
                     </div>
                    
                 </div>
-                <div className="commentSection">
+                <div 
+                onClick={() => handleExpand()}
+                className="commentSection">
                     <BiCommentDetail  style={{fontSize: '1.2rem', color: isLightMode ? 'black' : 'white'}}/>
                     <span style={{color: isLightMode ? 'black' : 'white', padding: '0 0.3rem'}}>{post.num_comments}</span>
                 </div>
             </div>
-
         </motion.div>
     )
 }

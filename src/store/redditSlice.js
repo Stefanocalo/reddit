@@ -44,20 +44,15 @@ const redditSlice = createSlice({
             state.posts[action.payload].showingComments = !state.posts[action.payload].showingComments;
         },
         startGetComments: (state, action) => {
-            state.posts[action.payload].showingComments = !state.posts[action.payload].showingComments;
-
-            if(!state.posts[action.payload].showingComments) {
-                return
-            } else {
-                state.posts[action.payload].showingComments = true;
-                state.posts[action.payload].error = false;
-            };
+            state.posts[action.payload].showingComments = false;
             state.posts[action.payload].loadingComments = true;
-            state.posts[action.payload]. error = false;
+            state.posts[action.payload].error = false;
         },
         getCommentSuccess: (state, action) => {
             state.posts[action.payload.index].loadingComments = false;
             state.posts[action.payload.index].comments = action.payload.comments;
+            state.posts[action.payload.index].showingComments = true;
+
             
         },
         getCommentsFail: (state, action) => {
