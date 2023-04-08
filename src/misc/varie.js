@@ -9,4 +9,12 @@ export const wordShortener = (str, expanded) => {
     } else {
         return str
     }
-  }
+}
+
+export function upsShortener(num) {
+    if(num < 1000) {
+        return num;
+    } else {
+        return `${(num/1000).toFixed(1)}K`;
+    }
+}

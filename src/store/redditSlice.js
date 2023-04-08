@@ -46,7 +46,7 @@ const redditSlice = createSlice({
         startGetComments: (state, action) => {
             state.posts[action.payload].showingComments = false;
             state.posts[action.payload].loadingComments = true;
-            state.posts[action.payload]. error = false;
+            state.posts[action.payload].error = false;
         },
         getCommentSuccess: (state, action) => {
             state.posts[action.payload.index].loadingComments = false;

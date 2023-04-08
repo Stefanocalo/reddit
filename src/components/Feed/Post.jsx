@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 //misc
 import moment from "moment";
 import { wordShortener } from "../../misc/varie";
+import { upsShortener } from "../../misc/varie";
 //Redux imports
 import { useSelector } from "react-redux";
 //Components imports
@@ -96,7 +97,7 @@ export function Post({post, index, setExpandedIndex, setSelectedId, setExpandedD
                         <TbArrowBigUp style={{fontSize: '1.6rem', color: isLightMode ? 'black' : 'white'}}/>
                     </div>
                     <span style={{color: isLightMode ? 'black' : 'white', padding: '0 0.3rem'}}
-                    >{voted ? post.ups + voted : post.ups}</span>
+                    >{voted ? upsShortener(post.ups + voted) : upsShortener(post.ups)}</span>
                     <div 
                     onClick={() => handleDownVote()}
                     className={voted === -1 ? 'downActive' : 'down'}>

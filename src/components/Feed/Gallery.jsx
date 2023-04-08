@@ -83,6 +83,13 @@ export function Gallery({post}) {
                     <IoIosArrowForward className="icon"/>
                 </div>
             </div>
+            <div className="dotContainer">
+               {galleryData.map((item, index) => (
+                <div 
+                onClick={() => setCurrentIndex(index)}
+                key={index} className={index === currentIndex ? 'activeDot' : 'dot'}></div>
+               ))}
+            </div>
         </div>
         {
             selectedId &&
@@ -112,6 +119,14 @@ export function Gallery({post}) {
                         layoutId={selectedId}
                         onDragEnd={() => setSelectedId(null)}
                         src={galleryData[currentIndex].hdlUrl}/>
+                        <div 
+                        className="expandedDotContainer">
+                            {galleryData.map((item, index) => (
+                                <div 
+                                onClick={() => setCurrentIndex(index)}
+                                key={index} className={index === currentIndex ? 'activeDot' : 'dot'}></div>
+                            ))}
+                        </div>
                     </motion.div>
             </AnimatePresence>
         }
