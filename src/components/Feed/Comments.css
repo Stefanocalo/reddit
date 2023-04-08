@@ -30,6 +30,7 @@
 .commentBody {
     margin: 0.5rem 10%;
     text-align: left;
+    word-wrap:break-word;
 }
 
 @media only screen and (max-width: 600px) {

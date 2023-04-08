@@ -14,6 +14,8 @@ import { Image } from "./Image";
 import { Comments } from "./Comment";
 //Miscs imports 
 import { wordShortener } from "../../misc/varie";
+import { motion } from "framer-motion";
+
 export function ExpandedPost({post,selectedId, setSelectedId, expandedIndex}) {
 
     const isLightMode = useSelector(state => state.reddit.isLightMode);
@@ -31,9 +33,7 @@ export function ExpandedPost({post,selectedId, setSelectedId, expandedIndex}) {
     const postData = useSelector(state => state.reddit.posts[expandedIndex]);
     
     //Fetch comments and toggle visibility on expand 
-    const [comments, setComments] = useState([]);
     const dispatch = useDispatch();
-
     useEffect(() => {
         dispatch(fetchComment(expandedIndex, post.permalink))
     },[expandedIndex]);
@@ -55,7 +55,8 @@ export function ExpandedPost({post,selectedId, setSelectedId, expandedIndex}) {
     }
 
     return(
-        <div className="expandedWrapper">
+        <div 
+        className="expandedWrapper">
             <div 
             style={{backgroundColor: isLightMode ? 'white' : 'black'}}
             className="expandedPostWrapper">

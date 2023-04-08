@@ -20,6 +20,18 @@
     border-bottom: 1px solid rgba(240, 240, 240, 0.5);
     cursor: pointer
 }
+.indicatorContainer {
+    width: 80%;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.indicator {
+    padding: 0.5rem;
+    border-radius: 10px;
+    background-color:  rgba(240, 240, 240, 0.5);
+}
 .author {
     font-size: 0.8rem;
 }
@@ -52,6 +64,7 @@
 .postImage {
     width: 75%;
     height: auto;
+    max-height: 30rem;
     border-radius: 10px;
     cursor: pointer;
 }
@@ -122,6 +135,18 @@
 .imageButton:hover {
     background-color: rgba(255, 255, 255, 0.3);
 }
+.galleryControls {
+    height: 3rem;
+    width: 3rem;
+    top: 50vh;
+    border-radius: 50%;
+    background-color: rgba(240, 240, 240, 0.3);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 1rem;
+}
 #left {
     left: 3rem
 }
@@ -132,7 +157,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: column;
+}
+.inlineflex {
+    display: flex;
+    align-items: center;
+    justify-content:center;
 }
 .galleryImage {
     height: 15rem;
@@ -202,5 +232,8 @@
     }
     .actionSectionContainer {
         justify-content: space-between;
+    }
+    .galleryControls {
+        margin: 0;
     }
 }
