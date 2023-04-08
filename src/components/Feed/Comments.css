@@ -1,7 +1,40 @@
-.commentWrapper {
+.commentWrapper,
+.replyWrapper {
     width: 60%;
+    margin-top: 1rem;
+}
+.replyWrapper {
+    margin-left: 15%;
+}
+.replyContainer {
+    border-left: 1px solid rgb(140, 190, 254);
+
 }
 .bubble {
    border: 1px solid rgba(185, 185, 185, 0.4);
    border-radius: 10px;
+}
+.commentAuthor{ 
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+.time {
+    font-size: 0.6rem;
+}
+.authorContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0.5rem 10%;
+}
+.commentBody {
+    margin: 0.5rem 10%;
+    text-align: left;
+}
+
+@media only screen and (max-width: 600px) {
+    .commentWrapper,
+    .replyWrapper {
+        width: 87%;
+    }
 }

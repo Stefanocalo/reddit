@@ -27,17 +27,19 @@ export const Comments = ({comment, id}) => {
                 if(reply.data.body) {
                     return  <div className="replyContainer" key={reply.data.id}>
                     <div className= "replyWrapper">
-                        <div className="authorContainer">
-                            <span 
+                        <div className="bubble">
+                            <div className="authorContainer">
+                                <span 
+                                style={{color: isLightMode ? 'black' : 'white'}}
+                                className="commentAuthor"> {reply.data.author} </span>
+                                <span 
+                                style={{color: isLightMode ? 'black' : 'white'}}
+                                className="time"> . {moment.unix(reply.data.created).fromNow()}</span>
+                            </div>
+                            <p 
                             style={{color: isLightMode ? 'black' : 'white'}}
-                            className="commentAuthor"> {reply.data.author} </span>
-                            <span 
-                            style={{color: isLightMode ? 'black' : 'white'}}
-                            className="time"> . {moment.unix(reply.data.created).fromNow()}</span>
+                            className="commentBody">{reply.data.body}</p>
                         </div>
-                        <p 
-                        style={{color: isLightMode ? 'black' : 'white'}}
-                        className="commentBody">{reply.data.body}</p>
                     </div>
                 </div>
                 }

@@ -33,22 +33,26 @@ export function ExpandedPost({post,selectedId, setSelectedId, expandedIndex}) {
     //Fetch comments and toggle visibility on expand 
     const [comments, setComments] = useState([]);
     const dispatch = useDispatch();
-    useEffect(() => {
-        if(postData.comments.length > 0) {
-            setComments(postData.comments);
-            console.log(comments);
-        }
-    },[postData]);
+
     useEffect(() => {
         dispatch(fetchComment(expandedIndex, post.permalink))
     },[expandedIndex]);
 
     function renderComments() {
         if(postData.loadingComments) {
-            return(<span>Loading...</span>)
+            return( <span>Loading comments...</span>)
+        }
+        if(postData.showingComments) {
+            return(
+                postData.comments.map(comment => (
+                    <Comments comment={comment} key={comment.id}/>
+                ))
+            )
+        }
+        if(postData.error) {
+            return(<span>Oh no! Something went wrong!</span>)
         }
     }
-
 
     return(
         <div className="expandedWrapper">
@@ -119,9 +123,7 @@ export function ExpandedPost({post,selectedId, setSelectedId, expandedIndex}) {
                         </div>
                         <div className="commentsContainer">
                             {
-                                comments && comments.map(comment => (
-                                    <Comments comment={comment} key={comment.id}/>
-                                ))
+                               renderComments()
                             }
                         </div>
                     </div>
