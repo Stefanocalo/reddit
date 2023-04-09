@@ -95,6 +95,16 @@ export function ExpandedPost({post,selectedId, setSelectedId, expandedIndex}) {
                             
                         }
                         {
+                            post.secure_media && 
+                            <div className="videoContainer">
+                                <video 
+                                className="postVideo"
+                                src={post.secure_media.reddit_video.fallback_url} controls>
+                                    Playback error.
+                                </video>
+                            </div>
+                        }
+                        {
                             post.selftext.length > 300 && (
                                 <>
                                 <p

@@ -68,10 +68,20 @@ export function Post({post, index, setExpandedIndex, setSelectedId, setExpandedD
                 
             }
             {
+                post.secure_media && 
+                <div className="videoContainer">
+                    <video 
+                    className="postVideo"
+                    src={post.secure_media.reddit_video.fallback_url} controls>
+                        Playback error.
+                    </video>
+                </div>
+            }
+            {
                 post.selftext &&
                 <div className="selfTextContainer">
                     {
-                        post.selftext.length > 300 && (
+                        post.selftext.length > 300 ? (
                             <>
                             <p
                             style={{color: isLightMode ? 'black' : 'white'}}
@@ -85,6 +95,13 @@ export function Post({post, index, setExpandedIndex, setSelectedId, setExpandedD
                                 >{expanded ? 'Show less...' : 'Show more...'}</span>
                             </div>
                             </>
+                        ) :  
+                        (
+                            <p
+                            style={{color: isLightMode ? 'black' : 'white'}}
+                            >
+                                {post.selftext}
+                            </p>
                         )
                     }
                 </div>
