@@ -6,6 +6,7 @@ import { fetchPosts } from "../../store/redditSlice";
 //Component import
 import { Post } from "./Post";
 import { ExpandedPost } from "./ExpandedPost";
+import { PostSkeleton } from "./PostSkeleton";
 //Framer motion imports 
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -39,9 +40,13 @@ export function Feed() {
     function renderPosts() {
         if(isLoading) {
             return(
-                <div>
-                    <p>...Loading</p>
-                </div>
+                <>
+                   {
+                    Array(20).fill(0).map(el => (
+                        <PostSkeleton/>
+                    ))
+                   }
+                </>
             )
         } else if(isError) {
             <div>
