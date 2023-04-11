@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 //Components imports
 import { Image } from "./Image";
 import { Gallery } from "./Gallery";
+import { Video } from "./Video";
 //React-icons imports
 import {BiCommentDetail} from 'react-icons/bi';
 import {TbArrowBigUp, TbArrowBigDown} from 'react-icons/tb';
@@ -69,13 +70,8 @@ export function Post({post, index, setExpandedIndex, setSelectedId, setExpandedD
             }
             {
                 post.secure_media && 
-                <div className="videoContainer">
-                    <video 
-                    className="postVideo"
-                    src={post.secure_media.reddit_video.fallback_url} controls>
-                        Playback error.
-                    </video>
-                </div>
+                <Video data={post.secure_media}/>
+                   
             }
             {
                 post.selftext &&

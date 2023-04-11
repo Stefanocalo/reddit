@@ -73,7 +73,7 @@ export function SubReddit({isMenuOpen, setIsMenuOpen}) {
                                 <div className="subredditIcon">
                                     <Skeleton style={{width: '100%', height: '100%', borderRadius: '50%'}}/>
                                 </div>
-                                <Skeleton style={{marginLeft: '1rem', width: Math.floor(Math.random()*100)+ 50}}/>
+                                <Skeleton style={{marginLeft: '1rem', width: '4rem'}}/>
                             </div>
                         </li>
                     ))
