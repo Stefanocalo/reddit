@@ -42,8 +42,8 @@ export function Feed() {
             return(
                 <>
                    {
-                    Array(20).fill(0).map(el => (
-                        <PostSkeleton/>
+                    Array(20).fill(0).map((el,index) => (
+                        <PostSkeleton key={index}/>
                     ))
                    }
                 </>

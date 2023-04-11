@@ -21,8 +21,7 @@ export function PostSkeleton() {
                 <Skeleton style={{width: '2rem'}}/>
             </div>
             <div className="titleContainer">
-                <Skeleton style={{width: '30rem'}}/>
-                <Skeleton style={{width: '7rem'}}/>
+                <Skeleton style={{width: '20rem'}}/>
             </div>
             <div className="selfTextContainer">
                 <Skeleton count={5}/>

@@ -12,6 +12,7 @@ import { fetchComment, toggleShowingComments } from "../../store/redditSlice";
 import { Gallery } from "./Gallery";
 import { Image } from "./Image";
 import { Comments } from "./Comment";
+import { CommentSkeleton } from "./CommentSkeleton";
 //Miscs imports 
 import { wordShortener } from "../../misc/varie";
 import { motion } from "framer-motion";
@@ -40,7 +41,15 @@ export function ExpandedPost({post,selectedId, setSelectedId, expandedIndex}) {
 
     function renderComments() {
         if(postData.loadingComments) {
-            return( <span>Loading comments...</span>)
+            return( 
+                <>
+                    {
+                        Array(10).fill(0).map((el, index) => (
+                            <CommentSkeleton key={index} />
+                        ))
+                    }
+                </>
+            )
         }
         if(postData.showingComments) {
             return(
@@ -105,7 +114,7 @@ export function ExpandedPost({post,selectedId, setSelectedId, expandedIndex}) {
                             </div>
                         }
                         {
-                            post.selftext.length > 300 && (
+                            post.selftext.length > 300 ? (
                                 <>
                                 <p
                                 style={{color: isLightMode ? 'black' : 'white'}}
@@ -119,6 +128,13 @@ export function ExpandedPost({post,selectedId, setSelectedId, expandedIndex}) {
                                     >{expanded ? 'Show less...' : 'Show more...'}</span>
                                 </div>
                                 </>
+                            ) :
+                            (
+                                <p
+                                style={{color: isLightMode ? 'black' : 'white'}}
+                                >
+                                    {post.selftext}
+                                </p>
                             )
                         }
                         <div className="actionSectionContainer">

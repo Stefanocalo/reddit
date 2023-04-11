@@ -44,7 +44,6 @@
     
 }
 .expandedMainContent {
-    padding-top: 3rem;
     max-height: 25rem;
     width: 100%;
     overflow: scroll;

@@ -65,8 +65,10 @@ export function SubReddit({isMenuOpen, setIsMenuOpen}) {
             <div style={{backgroundColor: isLightMode ? 'white' : 'black', borderColor: isLightMode ? 'lightgrey' : 'rgb(180,180,180)'}} className="subRedditWrapper">
                 <ul>
                 {loading && 
-                    Array(10).fill(0).map(el => (
-                        <li className="subList">
+                    Array(10).fill(0).map((el, index) => (
+                        <li
+                        key={index}
+                        className="subList">
                             <div className="notSelectedSubreddut">
                                 <div className="subredditIcon">
                                     <Skeleton style={{width: '100%', height: '100%', borderRadius: '50%'}}/>
