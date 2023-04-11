@@ -55,7 +55,8 @@ export function SubReddit({isMenuOpen, setIsMenuOpen}) {
    
     //Side menu animation
     const slide = useSpring({
-        right: isMenuOpen ? '0%' : !isMenuOpen && window.innerWidth < 600 ? '-100%' : '0%'
+        right: isMenuOpen ? '0%' : !isMenuOpen && window.innerWidth < 600 ? '-100%' : '0%',
+        backgroundColor: isLightMode ? 'white': 'black'
     })
 
     return(
