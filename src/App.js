@@ -14,13 +14,11 @@ function App() {
 
   const lightTheme = useSelector(state => state.reddit.isLightMode);
 
-  //Fetching sunReddits
-  const dispatch = useDispatch();
-  useEffect(() => {
-  },[])
-
   //Hamburger menu state
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  useEffect(() => {
+    isMenuOpen ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'auto';
+  },[isMenuOpen]);
 
   return (
     <SkeletonTheme baseColor="#7F7F7F" highlightColor="#BEBEBE">
