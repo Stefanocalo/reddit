@@ -16,7 +16,6 @@ import { CommentSkeleton } from "./CommentSkeleton";
 import { Video } from "./Video";
 //Miscs imports 
 import { wordShortener } from "../../misc/varie";
-import { motion } from "framer-motion";
 
 export function ExpandedPost({post,selectedId, setSelectedId, expandedIndex}) {
 

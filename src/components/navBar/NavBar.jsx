@@ -9,7 +9,8 @@ import { animate, motion } from "framer-motion";
 import { animated, useSpring } from "react-spring"; 
 //Redux imports
 import { useDispatch, useSelector } from "react-redux";
-import {setSearchTerm, toggleDarkMode} from "../../store/redditSlice";
+import {toggleDarkMode} from "../../store/redditSlice";
+import { SearchBar } from "./SearchBar";
 
 
 export function NavBar({isMenuOpen, setIsMenuOpen}) {
@@ -29,13 +30,6 @@ export function NavBar({isMenuOpen, setIsMenuOpen}) {
     }
     //Access theme in global state
     const theme = useSelector(state => state.reddit.isLightMode);
-    //Input state
-    const [input, setInput] = useState('');
-
-    function handleSubmit(e) {
-        e.preventDefault();
-        dispatch(setSearchTerm(input));
-    };
 
     //Side menu animation
     const slide = useSpring({
@@ -63,23 +57,7 @@ export function NavBar({isMenuOpen, setIsMenuOpen}) {
             <animated.div 
             style={slide}
             className="centralSection">
-                <form
-                style={{display: 'flex', height: '100%', width: '100%', alignItems: 'center', justifyContent: 'center'}}
-                onSubmit={(e) => handleSubmit(e)}
-                >
-                    <input
-                    className="searchInput"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    onSubmit={() => console.log(input)}
-                    />
-                    <button
-                    className='searchButton'
-                    onClick={(e) => handleSubmit(e)}
-                    >
-                        Search
-                    </button>
-                </form>                
+                <SearchBar/>        
             </animated.div>
             <motion.div 
             onClick={() => handleClick()}

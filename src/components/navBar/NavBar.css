@@ -81,6 +81,7 @@
     .centralSection {
        position: fixed;
        top: 4rem;
+       height: 4rem;
        width: 100%;
        background-color: rgba(240, 240, 240, 0.4);
     }
