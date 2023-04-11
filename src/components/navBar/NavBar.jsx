@@ -64,7 +64,7 @@ export function NavBar({isMenuOpen, setIsMenuOpen}) {
            
             id="theme"
             className="themeSection">
-                <CgDarkMode style={{color: theme ? 'black' : 'white' ,fontSize:'1.6rem', opacity: isMenuOpen ? 1 : 0}}/>
+                <CgDarkMode style={{color: theme ? 'black' : 'white' ,fontSize:'1.6rem'}}/>
             </motion.div>
         </div>
     )

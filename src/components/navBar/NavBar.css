@@ -87,8 +87,8 @@
     }
     .themeSection {
         position: fixed;
-        right: 10%;
-        height: 4rem;
+        right: 1rem;
+        margin: 0;
     }
     .hamburgerContainer {
         display: block;
