@@ -6,6 +6,9 @@ import { useSelector, useDispatch} from 'react-redux';
 import { NavBar } from './components/navBar/NavBar';
 import { SubReddit } from './components/subReddit/SubReddit';
 import { Feed } from './components/Feed/Feed';
+//Loading skeleton
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+
 
 function App() {
 
@@ -20,6 +23,7 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
+    <SkeletonTheme baseColor="#7F7F7F" highlightColor="#BEBEBE">
     <div style={{backgroundColor: lightTheme ? 'white' : 'black'}} className='App'>
       <NavBar 
       setIsMenuOpen={setIsMenuOpen}
@@ -29,6 +33,7 @@ function App() {
       isMenuOpen={isMenuOpen}/>
       <Feed/>
     </div>
+    </SkeletonTheme>
   );
 }
 

@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 //Components imports
 import { Image } from "./Image";
 import { Gallery } from "./Gallery";
+import { Video } from "./Video";
 //React-icons imports
 import {BiCommentDetail} from 'react-icons/bi';
 import {TbArrowBigUp, TbArrowBigDown} from 'react-icons/tb';
@@ -68,10 +69,15 @@ export function Post({post, index, setExpandedIndex, setSelectedId, setExpandedD
                 
             }
             {
+                post.secure_media && 
+                <Video data={post.secure_media}/>
+                   
+            }
+            {
                 post.selftext &&
                 <div className="selfTextContainer">
                     {
-                        post.selftext.length > 300 && (
+                        post.selftext.length > 300 ? (
                             <>
                             <p
                             style={{color: isLightMode ? 'black' : 'white'}}
@@ -85,6 +91,13 @@ export function Post({post, index, setExpandedIndex, setSelectedId, setExpandedD
                                 >{expanded ? 'Show less...' : 'Show more...'}</span>
                             </div>
                             </>
+                        ) :  
+                        (
+                            <p
+                            style={{color: isLightMode ? 'black' : 'white'}}
+                            >
+                                {post.selftext}
+                            </p>
                         )
                     }
                 </div>

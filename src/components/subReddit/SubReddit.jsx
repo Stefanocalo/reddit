@@ -7,6 +7,9 @@ import { motion, animate, stagger } from "framer-motion";
 import { setSelectedSubreddit } from "../../store/redditSlice";
 //Spring imports
 import { animated, useSpring } from "react-spring"; 
+//Loading skeleton
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 export function SubReddit({isMenuOpen, setIsMenuOpen}) {
 
@@ -61,6 +64,20 @@ export function SubReddit({isMenuOpen, setIsMenuOpen}) {
         className="subRedditContainer">
             <div style={{backgroundColor: isLightMode ? 'white' : 'black', borderColor: isLightMode ? 'lightgrey' : 'rgb(180,180,180)'}} className="subRedditWrapper">
                 <ul>
+                {loading && 
+                    Array(10).fill(0).map((el, index) => (
+                        <li
+                        key={index}
+                        className="subList">
+                            <div className="notSelectedSubreddut">
+                                <div className="subredditIcon">
+                                    <Skeleton style={{width: '100%', height: '100%', borderRadius: '50%'}}/>
+                                </div>
+                                <Skeleton style={{marginLeft: '1rem', width: '4rem'}}/>
+                            </div>
+                        </li>
+                    ))
+                }
                 {subreddits && subreddits.map((subreddit, index) => (
                     <motion.li
                     key={subreddit.id}
