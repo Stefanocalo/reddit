@@ -33,7 +33,8 @@
     justify-content: center;
 }
 #theme {
-    cursor: pointer
+    cursor: pointer;
+    height: 2rem
 }
 .navBarIcon {
     color: white;
