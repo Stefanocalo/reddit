@@ -19,7 +19,8 @@ export function Image({post}) {
         }
     },[selectedId])
 
-
+    const [opacity, setOpacity] = useState(1);
+    console.log(opacity);
 
     return(
         <>
@@ -37,6 +38,8 @@ export function Image({post}) {
             <AnimatePresence>
                 <AnimatePresence>
                     <motion.div
+                    style={{    backgroundColor: `rgba(0, 0, 0, ${opacity})`
+                    }}
                     className="expandedContainer">
                         <motion.div
                         onClick={() =>setSelectedId(null)}
@@ -46,8 +49,14 @@ export function Image({post}) {
                         <motion.img 
                         className="expandedImage"
                         drag={true}
+                        onDrag={(event, info) => {
+                            console.log(info.offset.y);
+                            setOpacity(2.5 - (info.offset.y * 0.008));
+                        }}
                         layoutId={selectedId}
-                        onDragEnd={() => setSelectedId(null)}
+                        onDragEnd={() => {
+                            setSelectedId(null);
+                        }}
                         src={url}/>
                     </motion.div>
                 </AnimatePresence>
