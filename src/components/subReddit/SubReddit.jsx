@@ -10,6 +10,8 @@ import { animated, useSpring } from "react-spring";
 //Loading skeleton
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+//Router imports
+import { useNavigate } from "react-router-dom";
 
 export function SubReddit({isMenuOpen, setIsMenuOpen}) {
 
@@ -26,9 +28,12 @@ export function SubReddit({isMenuOpen, setIsMenuOpen}) {
     const isLightMode = useSelector(state =>  state.reddit.isLightMode);
     const selectedSubReddit = useSelector(state => state.reddit.selectedSubReddits);
 
+    const navigate = useNavigate();
+
     function clickHandler(url) {
         dispatch(setSelectedSubreddit(url));
         setIsMenuOpen(false);
+        navigate('/');
     };
     
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);

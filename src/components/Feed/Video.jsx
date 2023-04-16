@@ -14,8 +14,6 @@ export function Video({data}){
        }
     },[]);
 
-    console.log(url);
-
     return(
         <div className="videoContainer">
             <video 

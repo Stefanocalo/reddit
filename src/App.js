@@ -6,8 +6,11 @@ import { useSelector, useDispatch} from 'react-redux';
 import { NavBar } from './components/navBar/NavBar';
 import { SubReddit } from './components/subReddit/SubReddit';
 import { Feed } from './components/Feed/Feed';
+import { SearchFeed } from './components/Search/SearchFeed';
 //Loading skeleton
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+//Router imports
+import { Routes, Route } from 'react-router-dom';
 
 
 function App() {
@@ -29,7 +32,10 @@ function App() {
       <SubReddit 
       setIsMenuOpen={setIsMenuOpen}
       isMenuOpen={isMenuOpen}/>
-      <Feed/>
+      <Routes>
+        <Route path='/' element={<Feed/>}/>
+        <Route path='/search' element={<SearchFeed/>} />
+      </Routes>
     </div>
     </SkeletonTheme>
   );

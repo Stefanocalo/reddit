@@ -57,7 +57,9 @@ export function NavBar({isMenuOpen, setIsMenuOpen}) {
             <animated.div 
             style={slide}
             className="centralSection">
-                <SearchBar/>        
+                <SearchBar
+                setIsMenuOpen={setIsMenuOpen}
+                />        
             </animated.div>
             <motion.div 
             onClick={() => handleClick()}

@@ -77,6 +77,14 @@
     border-radius: 10px;
     background-color: black;
 }
+.formSection {
+    background-color: none;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
 @media only screen and (max-width: 600px) {
     .centralSection {
        position: fixed;
@@ -97,6 +105,9 @@
     }
     .navBarContainer {
         width: 100vw;
+    }
+    .formSection {
+        backdrop-filter: blur(1rem);
     }
 
 }
