@@ -23,7 +23,7 @@ export function SearchBar({setIsMenuOpen}) {
 
     return(
         <form
-        style={{backgroundColor: 'rgba(240, 240, 240, 0.9',display: 'flex', height: '100%', width: '100%', alignItems: 'center', justifyContent: 'center'}}
+        className="formSection"
         onSubmit={(e) => handleSubmit(e)}
         >
             <input
