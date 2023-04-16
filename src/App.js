@@ -6,7 +6,7 @@ import { useSelector, useDispatch} from 'react-redux';
 import { NavBar } from './components/navBar/NavBar';
 import { SubReddit } from './components/subReddit/SubReddit';
 import { Feed } from './components/Feed/Feed';
-import { Search } from './components/Search/Search';
+import { SearchFeed } from './components/Search/SearchFeed';
 //Loading skeleton
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 //Router imports
@@ -34,7 +34,7 @@ function App() {
       isMenuOpen={isMenuOpen}/>
       <Routes>
         <Route path='/' element={<Feed/>}/>
-        <Route path='/search' element={<Search/>} />
+        <Route path='/search' element={<SearchFeed/>} />
       </Routes>
     </div>
     </SkeletonTheme>

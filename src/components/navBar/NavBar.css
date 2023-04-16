@@ -107,7 +107,6 @@
         width: 100vw;
     }
     .formSection {
-        background-color: rgb(240, 240, 240, 0.8);
         backdrop-filter: blur(1rem);
     }
 
