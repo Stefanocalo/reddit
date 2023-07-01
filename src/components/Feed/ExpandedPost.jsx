@@ -63,9 +63,17 @@ export function ExpandedPost({post,selectedId, setSelectedId, expandedIndex}) {
         }
     }
 
+    const wrapper = document.getElementById('id02');
+    function closeExpanded(event) {
+        event.target == wrapper && setSelectedId(null);
+    }
+
     return(
         <div 
-        className="expandedWrapper">
+        id='id02'
+        className="expandedWrapper"
+        onClick={(e) => closeExpanded(e)}
+        >
             <div 
             style={{backgroundColor: isLightMode ? 'white' : 'black'}}
             className="expandedPostWrapper">

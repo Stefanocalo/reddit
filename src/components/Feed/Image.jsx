@@ -19,6 +19,11 @@ export function Image({post}) {
         }
     },[selectedId])
 
+    const focusOut = document.getElementById('id01');
+    function exitClick(event) {
+        event.target == focusOut && setSelectedId(null)
+    }
+
     return(
         <>
         <div className="postImgContainer">
@@ -35,7 +40,10 @@ export function Image({post}) {
             <AnimatePresence>
                 <AnimatePresence>
                     <motion.div
-                    className="expandedContainer">
+                    id='id01'
+                    className="expandedContainer"
+                    onClick={(e) => exitClick(e)}
+                    >
                         <motion.div
                         onClick={() =>setSelectedId(null)}
                         className="close">

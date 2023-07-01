@@ -44,7 +44,7 @@
     
 }
 .expandedMainContent {
-    max-height: 25rem;
+    max-height: 80vh;
     width: 100%;
     overflow: scroll;
     display: flex;
