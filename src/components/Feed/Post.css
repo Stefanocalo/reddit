@@ -259,6 +259,7 @@
     .expandedImage {
         width: 100%;
         height: auto;
+        touch-action: none;
     }
     #left {
         left: 0.2rem

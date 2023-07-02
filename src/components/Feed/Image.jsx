@@ -1,10 +1,12 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { replaceString } from "../../misc/varie";
 import './Post.css';
 import {AiOutlineCloseCircle} from 'react-icons/ai';
 
 export function Image({post}) {
+
+    const exp = useRef(null);
 
     const [selectedId, setSelectedId] = useState(null);
     const [url, setUrl] = useState(null);
@@ -28,6 +30,7 @@ export function Image({post}) {
         <>
         <div className="postImgContainer">
             <motion.img
+            ref={exp}
             layoutId={post.preview.images[0].id} 
             onClick={() => {
                 setSelectedId(post.preview.images[0].id);
@@ -40,6 +43,7 @@ export function Image({post}) {
             <AnimatePresence>
                 <AnimatePresence>
                     <motion.div
+                    ref={exp}
                     id='id01'
                     className="expandedContainer"
                     onClick={(e) => exitClick(e)}
@@ -51,11 +55,16 @@ export function Image({post}) {
                         </motion.div>
                         <motion.img 
                         className="expandedImage"
-                        drag={true}
-                        layoutId={selectedId}
-                        onDragEnd={() => {
-                            setSelectedId(null);
+                        drag={'y'}
+                        dragSnapToOrigin={true}
+                        dragConstraints={{ left: 0, right: 0}}
+                        onPanEnd={(e, panInfo) => {
+                            if(panInfo.offset.y > 190 || panInfo.offset.y < -190) {
+                                setSelectedId(null);
+                            }
                         }}
+                        layoutId={selectedId}
+                       
                         src={url}/>
                     </motion.div>
                 </AnimatePresence>
