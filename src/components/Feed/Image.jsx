@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from "react";
-import { motion, AnimatePresence, useTransform, useMotionValue } from "framer-motion";
+import { motion, AnimatePresence, useTransform, useMotionValue, useMotionValueEvent } from "framer-motion";
 import { replaceString } from "../../misc/varie";
 import './Post.css';
 import {AiOutlineCloseCircle} from 'react-icons/ai';
@@ -25,7 +25,6 @@ export function Image({post}) {
     function exitClick(event) {
         event.target == focusOut && setSelectedId(null)
     }
-
 
     return(
         <>
@@ -59,9 +58,6 @@ export function Image({post}) {
                         drag={'y'}
                         dragSnapToOrigin={true}
                         dragConstraints={{ left: 0, right: 0}}
-                        onPan={(e, panInfo) => {
-                            console.log(panInfo.offset.y)
-                        }}
                         onPanEnd={(e, panInfo) => {
                             if(panInfo.offset.y > 190 || panInfo.offset.y < -190) {
                                 setSelectedId(null);
