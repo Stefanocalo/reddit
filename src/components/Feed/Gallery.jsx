@@ -115,9 +115,20 @@ export function Gallery({post}) {
                         </div>
                         <motion.img 
                         className="expandedImage"
-                        drag={true}
-                        layoutId={selectedId}
-                        onDragEnd={() => setSelectedId(null)}
+                        drag={'y'}
+                        dragSnapToOrigin={true}
+                        dragConstraints={{ left: 0, right: 0}}
+                        onPanEnd={(e, panInfo) => {
+                            if(panInfo.offset.y > 190 || panInfo.offset.y < -190) {
+                                setSelectedId(null);
+                            }
+                            if(panInfo.offset.x < 10) {
+                                currentIndex !== galleryData.length -1 && handleForward()
+                            }
+                            if(panInfo.offset.x > 10) {
+                                currentIndex !== 0 && handleBack();
+                            }
+                        }}
                         src={galleryData[currentIndex].hdlUrl}/>
                         <div 
                         className="expandedDotContainer">
